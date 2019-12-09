@@ -7,6 +7,7 @@ from django.urls import path
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from app import forms, views
+from app.adminpanel import admin_panel_views
 
 
 urlpatterns = [path('', views.home, name='home'),
@@ -24,4 +25,7 @@ urlpatterns = [path('', views.home, name='home'),
              }),
          name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
-    path('admin/', admin.site.urls),]
+    path('admin/', admin.site.urls),
+    path('adminpanel/', admin_panel_views.adminpanelMain, name='adminpanel'),
+    path('adminpanel/departments', admin_panel_views.departmentList.as_view(),name='departments'),
+    path('adminpanel/departments/create', admin_panel_views.departmentCreate, name = 'create_department')]

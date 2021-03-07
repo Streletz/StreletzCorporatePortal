@@ -16,6 +16,7 @@ class Department(models.Model):
 class Employee(models.Model):   
    name = models.CharField(max_length=255)
    created = models.DateTimeField(default=datetime.datetime().now())
+   birthday = models.DateTimeField()
    worksSince = models.DateTimeField()
    dismissed = models.DateTimeField()
    isActive = models.BooleanField(default=true)

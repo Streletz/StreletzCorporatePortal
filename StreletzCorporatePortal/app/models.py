@@ -20,5 +20,9 @@ class Employee(models.Model):
    dismissed = models.DateTimeField()
    isActive = models.BooleanField(default=true)
    department = models.ForeignKey(Department, on_delete=models.PROTECT)
+   position = models.ForeignKey(Position, on_delete=models.PROTECT)
+
+class Position(models.Model):    
+    name = models.CharField(max_length=255)
 
 # Create your models here.

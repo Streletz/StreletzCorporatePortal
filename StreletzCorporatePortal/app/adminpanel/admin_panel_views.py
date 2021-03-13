@@ -4,7 +4,8 @@ from django.http import HttpRequest
 from app.models import Department
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
-from app.adminpanel.forms import BootstrapDepartmentForm
+from app.adminpanel.forms import BootstrapDepartmentCreateForm
+from app.adminpanel.forms import BootstrapDepartmentEditForm
 
 APP_NAME = 'Streletz Кoрпоративный Портал'
 VERSION = '0.1'
@@ -39,18 +40,41 @@ class departmentList(ListView):
 def departmentCreate(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
-        form = BootstrapDepartmentForm(request.POST)
+        form = BootstrapDepartmentCreateForm(request.POST)
         if form.is_valid:
-            form.save()
-            a = 1
+            form.save()            
             return HttpResponseRedirect('/adminpanel/departments')
     else:
-        form = BootstrapDepartmentForm()
+        form = BootstrapDepartmentCreateForm()
 
     return render(request,
         'adminpanel/departments/create.html',
         {
             'title':'Новое подразделение',
+            'year':datetime.now().year,
+            'app_name':APP_NAME,
+            'version':VERSION,
+            'form':form
+        })
+
+def departmentEdit(request, id):
+    assert isinstance(request, HttpRequest)
+    if request.method == 'POST':
+        form = BootstrapDepartmentEditForm(request.POST)
+        if form.is_valid:
+            department = Department.objects.get(pk=id)
+            department.name=form.data.get('name')
+            department.save()
+            return HttpResponseRedirect('/adminpanel/departments')
+    else:
+        department = Department.objects.get(pk=id)
+        form = BootstrapDepartmentEditForm(instance=department)
+
+    return render(request,
+        'adminpanel/departments/edit.html',
+        {
+            'department':department,
+            'title':'Редактирование подразделения',
             'year':datetime.now().year,
             'app_name':APP_NAME,
             'version':VERSION,

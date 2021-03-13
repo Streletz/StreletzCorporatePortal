@@ -24,6 +24,7 @@
         <tr class='success'>
             <td>{{ d.id }}</td>
             <td>{{ d.name }}</td>
+            <td><a class="btn btn-primary" href="{% url 'edit_department' id=d.id %}">Редактировать</a></td>
         </tr>
         {% endfor %}
         </tbody>

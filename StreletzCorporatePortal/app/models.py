@@ -5,10 +5,10 @@ Definition of models.
 from django.db import models
 import datetime
 class Department(models.Model):    
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,unique=True)
 
 class Position(models.Model):    
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,unique=True)
 
 class Employee(models.Model):   
     name = models.CharField(max_length=255)
@@ -19,6 +19,8 @@ class Employee(models.Model):
     isActive = models.BooleanField(default=True)
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
     position = models.ForeignKey(Position, on_delete=models.PROTECT)
+    class Meta:
+        unique_together= (('name', 'birthday','department','position'),)
 
 class Director(models.Model):    
     name = models.CharField(max_length=255)

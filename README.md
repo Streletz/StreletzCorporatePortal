@@ -1,1 +1,32 @@
 # StreletzCorporatePortal
+
+Corporate portal in Python Django
+
+**The application is under development!!!**
+
+## SYSTEM REQUIREMENTS
+
+ - Python 3.8 or higher.
+
+## TO INSTALL
+
+ - In the StrletzCorporatePortal/settings file.py in the lines below, specify the data to connect to your database
+
+```DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'corporate_portal',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '',
+ }
+}
+```
+
+ - Execute console commands:
+
+```
+cd myManagePyPath
+python manage.py migrate
+   ```

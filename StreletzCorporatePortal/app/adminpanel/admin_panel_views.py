@@ -28,7 +28,6 @@ class departmentList(ListView):
     context_object_name = 'departments'
     ordering = ['name']
     def get_context_data(self, **kwargs):
-        #ctx = super(GalleryList, self).get_context_data(**kwargs)
         ctx = super(ListView,self).get_context_data(**kwargs)
         ctx['title'] = self.title
         ctx['app_name'] = APP_NAME

@@ -6,6 +6,7 @@ from django.db import models
 import datetime
 class Department(models.Model):    
     name = models.CharField(max_length=255,unique=True)
+    description = models.TextField(null=True)
 
 class Position(models.Model):    
     name = models.CharField(max_length=255,unique=True)

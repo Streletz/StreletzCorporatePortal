@@ -1,4 +1,8 @@
-
 <h2>
     Подразделения
 </h2>
+<ul>
+    {% for d in departments %}
+        <li><a>{{ d.name }}</a></li>
+    {% endfor %}
+</ul>

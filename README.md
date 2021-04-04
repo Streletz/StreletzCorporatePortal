@@ -6,11 +6,12 @@ Corporate portal in Python Django
 
 ## SYSTEM REQUIREMENTS
 
- - Python 3.8 or higher.
+ - Python 3.8 or higher;
+ - PostgreSQL 10 or higher.
 
 ## TO INSTALL
 
- - In the StrletzCorporatePortal/settings file.py in the lines below, specify the data to connect to your database
+ - In the StreletzCorporatePortal/settings file.py in the lines below, specify the data to connect to your database
 
 ```DATABASES = {
     'default': {
@@ -30,3 +31,10 @@ Corporate portal in Python Django
 cd myManagePyPath
 python manage.py migrate
    ```
+## HISTORY
+
+### 0.1.0
+
+First version.
+
+ - Department list.

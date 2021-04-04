@@ -8,7 +8,7 @@ from app.adminpanel.forms import BootstrapDepartmentCreateForm, BootstrapDepartm
 from app.adminpanel.forms import BootstrapDepartmentEditForm
 
 APP_NAME = 'Streletz Кoрпоративный Портал'
-VERSION = '0.1'
+VERSION = '0.1.0'
 
 
 def adminpanelMain(request):

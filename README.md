@@ -1,6 +1,6 @@
 # StreletzCorporatePortal
 
-Corporate portal in Python Django
+The corporate portal powered by Python Django.
 
 **The application is under development!!!**
 

@@ -5,7 +5,7 @@ from app.models import Department
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 
-VERSION = '0.1'
+VERSION = '0.1.0'
 
 def departmentView(request, id):
     assert isinstance(request, HttpRequest)

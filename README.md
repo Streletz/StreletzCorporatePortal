@@ -11,7 +11,7 @@ The corporate portal powered by Python Django.
 
 ## TO INSTALL
 
- - In the StreletzCorporatePortal/settings file.py in the lines below, specify the data to connect to your database
+ - In the StreletzCorporatePortal/settings.py in the lines below, specify the data to connect to your database
 
 ```DATABASES = {
     'default': {

@@ -27,7 +27,7 @@ class departmentList(ListView):
     title = 'Подразделения'
     model = Department
     template_name = 'adminpanel/departments/index.html'
-    context_object_name = 'departments'
+    context_object_name = 'department'
     ordering = ['name']
 
     def get_context_data(self, **kwargs):
@@ -45,7 +45,7 @@ def departmentCreate(request):
         form = BootstrapDepartmentCreateForm(request.POST)
         if form.is_valid:
             form.save()
-            return HttpResponseRedirect('/adminpanel/departments')
+            return HttpResponseRedirect('/adminpanel/department')
     else:
         form = BootstrapDepartmentCreateForm()
 
@@ -69,7 +69,7 @@ def departmentEdit(request, id):
             department.name = form.data.get('name')
             department.description = form.data.get('description')
             department.save()
-            return HttpResponseRedirect('/adminpanel/departments')
+            return HttpResponseRedirect('/adminpanel/department')
     else:
         department = Department.objects.get(pk=id)
         form = BootstrapDepartmentEditForm(instance=department)
@@ -93,7 +93,7 @@ def departmentDelete(request, id):
         if form.is_valid:
             department = Department.objects.get(pk=id)
             department.delete()
-            return HttpResponseRedirect('/adminpanel/departments')
+            return HttpResponseRedirect('/adminpanel/department')
     else:
         department = Department.objects.get(pk=id)
         form = BootstrapDepartmentDeleteForm(instance=department)

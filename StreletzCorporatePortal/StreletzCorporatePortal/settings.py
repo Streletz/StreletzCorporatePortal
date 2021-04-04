@@ -36,7 +36,7 @@ INSTALLED_APPS = ['app',
                   'django.contrib.contenttypes',
                   'django.contrib.sessions',
                   'django.contrib.messages',
-                  'django.contrib.staticfiles', ]
+                  'django.contrib.staticfiles']
 
 # Middleware framework
 # https://docs.djangoproject.com/en/2.1/topics/http/middleware/
@@ -54,14 +54,15 @@ ROOT_URLCONF = 'StreletzCorporatePortal.urls'
 # https://docs.djangoproject.com/en/2.1/topics/templates/
 TEMPLATES = [{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': [],
+    'DIRS': [
+        os.path.join(BASE_DIR, '/templates/content/departments')
+    ],
     'APP_DIRS': True,
     'OPTIONS': {
         'context_processors': ['django.template.context_processors.debug',
                                'django.template.context_processors.request',
                                'django.contrib.auth.context_processors.auth',
                                'django.contrib.messages.context_processors.messages'],
-        #                        'app.ui_modules.department_menu.department_menu', ],
         'libraries': {
             'department_menu': 'app.ui_modules.department_menu'
         }

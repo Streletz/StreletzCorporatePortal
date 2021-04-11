@@ -1,0 +1,37 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Должности</h1>
+    </div>
+</div>
+<div class="row">
+    <a class="btn btn-primary" href="{% url 'create_position' %}">Создать</a>
+</div>
+<div class="row">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Должность</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for p in positions %}
+        <tr class='success'>
+            <td>{{ p.id }}</td>
+            <td>{{ p.name }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'edit_position' id=p.id %}">Редактировать</a>
+                <a class="btn btn-danger" href="{% url 'delete_position' id=p.id %}">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -8,6 +8,9 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from app import forms, views
 from app.adminpanel import admin_panel_views
+from app.adminpanel.department import views as admin_department_views
+from app.adminpanel.position import views as admin_position_views
+
 from app.content.department import department_views
 
 urlpatterns = [path('', views.home, name='home'),
@@ -26,11 +29,20 @@ urlpatterns = [path('', views.home, name='home'),
                     name='login'),
                path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
                path('admin/', admin.site.urls),
+               # ADMIN PANEL
                path('adminpanel/', admin_panel_views.adminpanelMain, name='adminpanel'),
-               path('adminpanel/department', admin_panel_views.departmentList.as_view(), name='department'),
-               path('adminpanel/department/create', admin_panel_views.departmentCreate, name='create_department'),
-               path('adminpanel/department/edit/<int:id>', admin_panel_views.departmentEdit, name='edit_department'),
-               path('adminpanel/department/delete/<int:id>', admin_panel_views.departmentDelete,
+               path('adminpanel/department', admin_department_views.DepartmentListView.as_view(), name='departments'),
+               path('adminpanel/department/create', admin_department_views.departmentCreate, name='create_department'),
+               path('adminpanel/department/edit/<int:id>', admin_department_views.departmentEdit,
+                    name='edit_department'),
+               path('adminpanel/department/delete/<int:id>', admin_department_views.departmentDelete,
                     name='delete_department'),
+               path('adminpanel/position', admin_position_views.PositionListView.as_view(), name='positions'),
+               path('adminpanel/position/create', admin_position_views.positionCreate, name='create_position'),
+               path('adminpanel/position/edit/<int:id>', admin_position_views.positionEdit,
+                    name='edit_position'),
+               path('adminpanel/position/delete/<int:id>', admin_position_views.positionDelete,
+                    name='delete_position'),
+               # PUBLIC SITE
                path('department/<int:id>', department_views.departmentView, name='department_content_view')
                ]

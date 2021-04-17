@@ -14,9 +14,9 @@ class Position(models.Model):
 class Employee(models.Model):   
     name = models.CharField(max_length=255)
     created = models.DateTimeField(default=datetime.datetime.now())
-    birthday = models.DateTimeField()
-    worksSince = models.DateTimeField()
-    dismissed = models.DateTimeField()
+    birthday = models.DateTimeField(null=True)
+    worksSince = models.DateTimeField(default=datetime.datetime.now())
+    dismissed = models.DateTimeField(null=True)
     isActive = models.BooleanField(default=True)
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
     position = models.ForeignKey(Position, on_delete=models.PROTECT)

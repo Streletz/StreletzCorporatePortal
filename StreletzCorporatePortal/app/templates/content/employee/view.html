@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{ employee.name }}</h1>
+    </div>
+</div>
+<div class="col-md-12">
+    <p>Подразделение: <a href="{% url 'department_content_view' id=employee.department.id %}">{{ employee.department.name }}</a></p>
+<p>Должность: {{ employee.position.name }}</p>
+<p>День рождения: {{ employee.birthday|date:"j E" }}</p>
+<p>Работает с: {{ employee.worksSince|date:"j E Y" }}</p>
+
+</div>
+
+
+{% endblock %}

@@ -10,6 +10,7 @@ from app import forms, views
 from app.adminpanel import admin_panel_views
 from app.adminpanel.department import views as admin_department_views
 from app.adminpanel.position import views as admin_position_views
+from app.adminpanel.employee import views as admin_employee_views
 
 from app.content.department import department_views
 from app.content.employee import employee_views
@@ -44,6 +45,7 @@ urlpatterns = [path('', views.home, name='home'),
                     name='edit_position'),
                path('adminpanel/position/delete/<int:id>', admin_position_views.positionDelete,
                     name='delete_position'),
+path('adminpanel/employee', admin_employee_views.EmployeeListView.as_view(), name='employees'),
                # PUBLIC SITE
                path('department/<int:id>', department_views.departmentView, name='department_content_view'),
                path('employee/<int:id>', employee_views.employeeCardView, name='employee_content_view')

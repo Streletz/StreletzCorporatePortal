@@ -11,15 +11,15 @@ APP_NAME = 'Streletz Кoрпоративный Портал'
 VERSION = '0.2.0'
 
 
-class DepartmentListView(ListView):
-    title = 'Подразделения'
-    model = Department
-    template_name = 'adminpanel/departments/index.html'
-    context_object_name = 'departments'
+class EmployeeListView(ListView):
+    title = 'Сотрудники'
+    model = Employee
+    template_name = 'adminpanel/employee/index.html'
+    context_object_name = 'employees'
     ordering = ['name']
 
     def get_context_data(self, **kwargs):
-        ctx = super(DepartmentListView, self).get_context_data(**kwargs)
+        ctx = super(EmployeeListView, self).get_context_data(**kwargs)
         ctx['title'] = self.title
         ctx['app_name'] = APP_NAME
         ctx['version'] = VERSION

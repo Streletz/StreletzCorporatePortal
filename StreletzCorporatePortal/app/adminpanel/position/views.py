@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.conf import settings
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import ListView
@@ -8,8 +9,8 @@ from app.adminpanel.position.forms import BootstrapPositionCreateForm, Bootstrap
     BootstrapPositionDeleteForm
 from app.models import Position
 
-APP_NAME = 'Streletz Кoрпоративный Портал'
-VERSION = '0.1.0'
+APP_NAME = settings.APP_NAME
+VERSION = settings.APP_VERSION
 
 
 class PositionListView(ListView):

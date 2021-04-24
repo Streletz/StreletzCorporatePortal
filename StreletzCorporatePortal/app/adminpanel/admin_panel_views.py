@@ -1,9 +1,11 @@
 from datetime import datetime
+
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
 
-APP_NAME = 'Streletz Кoрпоративный Портал'
-VERSION = '0.1.0'
+APP_NAME = settings.APP_NAME
+VERSION = settings.APP_VERSION
 
 
 def adminpanelMain(request):

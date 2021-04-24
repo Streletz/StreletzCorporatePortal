@@ -18,7 +18,9 @@
         <div class="col-md-12">
             <h3>Руководитель</h3>
             {% if director != none %}
-                <p><a href="{% url 'employee_content_view' id=director.id %}">{{ director.name }}</a>, {{ director.position.name }}</p>
+                <p>
+                    <a href="{% url 'employee_content_view' id=director.id %}">{{ director.name }}</a>, {{ director.position.name }}
+                </p>
             {% else %}
                 <p>Не назначен.</p>
             {% endif %}
@@ -51,7 +53,7 @@
                 {% else %}
                     <tr>
                         <td>{{ e.id }}</td>
-                        <td>{{ e.name }}</td>
+                        <td><a href="{% url 'employee_content_view' id=e.id %}">{{ e.name }}</a></td>
                         <td>{{ e.position.name }}</td>
                     </tr>
                 {% endif %}

@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
 from app.models import Department, Employee
@@ -15,6 +17,7 @@ def employeeCardView(request, id):
               {
                   'employee': employee,
                   'year': datetime.now().year,
-                  'version': VERSION,
+                  'app_name': settings.APP_NAME,
+                  'version': settings.APP_VERSION,
                   'title': employee.name
               })

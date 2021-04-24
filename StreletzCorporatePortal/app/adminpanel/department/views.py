@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
 from app.models import Department, Employee
@@ -7,8 +9,8 @@ from django.views.generic.list import ListView
 from app.adminpanel.department.forms import BootstrapDepartmentDeleteForm, BootstrapDepartmentCreateForm
 from app.adminpanel.department.forms import BootstrapDepartmentEditForm
 
-APP_NAME = 'Streletz Кoрпоративный Портал'
-VERSION = '0.2.0'
+APP_NAME = settings.APP_NAME
+VERSION = settings.APP_VERSION
 
 
 class DepartmentListView(ListView):

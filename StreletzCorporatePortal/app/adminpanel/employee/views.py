@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
 from app.models import Department, Employee, Position
@@ -6,9 +8,6 @@ from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from app.adminpanel.employee.forms import BootstrapEmployeeCreateForm, \
     BootstrapEmployeeEditForm, BootstrapEmployeeDeleteForm
-
-APP_NAME = 'Streletz Кoрпоративный Портал'
-VERSION = '0.2.0'
 
 
 class EmployeeListView(ListView):
@@ -21,8 +20,8 @@ class EmployeeListView(ListView):
     def get_context_data(self, **kwargs):
         ctx = super(EmployeeListView, self).get_context_data(**kwargs)
         ctx['title'] = self.title
-        ctx['app_name'] = APP_NAME
-        ctx['version'] = VERSION
+        ctx['app_name'] = settings.APP_NAME
+        ctx['version'] = settings.APP_VERSION
         ctx['year'] = datetime.now().year
         return ctx
 
@@ -42,8 +41,8 @@ def employeeCreate(request):
                   {
                       'title': 'Новый сотрудник',
                       'year': datetime.now().year,
-                      'app_name': APP_NAME,
-                      'version': VERSION,
+                      'app_name': settings.APP_NAME,
+                      'version': settings.APP_VERSION,
                       'form': form
                   })
 
@@ -73,8 +72,8 @@ def employeeEdit(request, id):
                       'employee': employee,
                       'title': 'Редактирование сотрудника',
                       'year': datetime.now().year,
-                      'app_name': APP_NAME,
-                      'version': VERSION,
+                      'app_name': settings.APP_NAME,
+                      'version': settings.APP_VERSION,
                       'form': form
                   })
 
@@ -97,7 +96,7 @@ def employeeDelete(request, id):
                       'employee': employee,
                       'title': 'Удаление сотрудника',
                       'year': datetime.now().year,
-                      'app_name': APP_NAME,
-                      'version': VERSION,
+                      'app_name': settings.APP_NAME,
+                      'version': settings.APP_VERSION,
                       'form': form
                   })

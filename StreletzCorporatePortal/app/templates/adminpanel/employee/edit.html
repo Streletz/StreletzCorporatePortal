@@ -3,19 +3,19 @@
 {% block content %}
 
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>Редактирование подразделения</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+        </div>
     </div>
-</div>
-<div class="col-md-12">
-    <form method="post" action="{% url 'edit_department' id=department.id %}">
-        {% csrf_token %}
-        {{ form }}
-        <br />
-        <input type="submit" class="btn btn-success" value="OK"/>
-    </form>
-</div>
+    <div class="col-md-12">
+        <form method="post" action="{% url 'edit_employee' id=employee.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <br/>
+            <input type="submit" class="btn btn-success" value="OK"/>
+        </form>
+    </div>
 
 
 {% endblock %}

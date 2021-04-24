@@ -1,48 +1,82 @@
 from django import forms
-from app.models import Department
+from django.forms import ModelChoiceField
+
+from app.models import Department, Employee, Position
 
 
-class BootstrapDepartmentCreateForm(forms.ModelForm):
-    """Department create form which uses boostrap CSS."""
-    name = forms.CharField(max_length=255, label='Название',
+class EmployeeDateInput(forms.DateInput):
+    input_type = 'date'
+    format = '%Y-%m-%d'
+
+
+class EmployeeModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.name
+
+
+class BootstrapEmployeeCreateForm(forms.ModelForm):
+    """Employee create form which uses boostrap CSS."""
+    name = forms.CharField(max_length=255, label='ФИО', required=True,
                            widget=forms.TextInput({
                                'class': 'form-control'
                            }))
-    description = forms.CharField(max_length=255, label='Описание',
-                                  widget=forms.Textarea({
-                                      'class': 'form-control'
-                                  }))
+    birthday = forms.DateField(label='Дата рождения', required=True,
+                               widget=EmployeeDateInput({
+                                   'class': 'form-control'
+                               }))
+    worksSince = forms.DateField(label='Работает с', required=True,
+                                 widget=EmployeeDateInput({
+                                     'class': 'form-control'
+                                 }))
+    department = EmployeeModelChoiceField(queryset=Department.objects.all(), required=True,
+                                          label='Подразделение')
+    position = EmployeeModelChoiceField(queryset=Position.objects.all(), required=True,
+                                        label='Должность')
 
     class Meta:
-        model = Department
-        fields = ['name', 'description']
+        model = Employee
+        fields = ['name', 'birthday', 'worksSince', 'department', 'position']
 
 
-class BootstrapDepartmentEditForm(forms.ModelForm):
-    """Department edit form which uses boostrap CSS."""
+class BootstrapEmployeeEditForm(forms.ModelForm):
+    """Employee edit form which uses boostrap CSS."""
     id = forms.HiddenInput()
-    name = forms.CharField(max_length=255, label='Название',
+    name = forms.CharField(max_length=255, label='ФИО', required=True,
                            widget=forms.TextInput({
                                'class': 'form-control'
                            }))
-    description = forms.CharField(max_length=255, label='Описание',
-                                  widget=forms.Textarea({
-                                      'class': 'form-control'
-                                  }))
+    birthday = forms.DateField(label='Дата рождения', required=True, input_formats=['%y-%m-%d'],
+                               widget=EmployeeDateInput({
+                                   'class': 'form-control'
+                               }))
+    worksSince = forms.DateField(label='Работает с', required=True,
+                                 widget=EmployeeDateInput({
+                                     'class': 'form-control'
+                                 }))
+    isActive = forms.BooleanField(label="Работает", required=False,
+                                  widget=forms.CheckboxInput({'class': 'form-control'}))
+    dismissed = forms.DateField(label='Уволен',
+                                widget=EmployeeDateInput({
+                                    'class': 'form-control'
+                                }))
+    department = EmployeeModelChoiceField(queryset=Department.objects.all(), required=True,
+                                          label='Подразделение')
+    position = EmployeeModelChoiceField(queryset=Position.objects.all(), required=True,
+                                        label='Должность')
 
     class Meta:
-        model = Department
-        fields = ['id', 'name', 'description']
+        model = Employee
+        fields = ['name', 'birthday', 'worksSince', 'isActive', 'dismissed', 'department', 'position']
 
 
-class BootstrapDepartmentDeleteForm(forms.ModelForm):
-    """Department create form which uses boostrap CSS."""
-    name = forms.CharField(max_length=255, label='Название',
+class BootstrapEmployeeDeleteForm(forms.ModelForm):
+    """Employee create form which uses boostrap CSS."""
+    name = forms.CharField(max_length=255, label='ФИО',
                            widget=forms.TextInput({
                                'class': 'form-control',
                                'readonly': True
                            }))
 
     class Meta:
-        model = Department
+        model = Employee
         fields = ['id', 'name']

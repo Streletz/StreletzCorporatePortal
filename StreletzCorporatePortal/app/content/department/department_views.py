@@ -14,7 +14,7 @@ def departmentView(request, id):
     director = None
     if department.director_set.filter(employee__isActive=True).count() > 0:
         director = department.director_set.filter(employee__isActive=True).first().employee
-    employees = department.employee_set.filter(isActive=True).all()
+    employees = department.employee_set.filter(isActive=True).all().order_by('name')
     return render(request,
                   'content/departments/view.html',
                   {

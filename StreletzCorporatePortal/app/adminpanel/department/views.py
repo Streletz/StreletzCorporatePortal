@@ -4,8 +4,8 @@ from django.http import HttpRequest
 from app.models import Department, Employee
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
-from app.adminpanel.employee.forms import BootstrapDepartmentCreateForm, BootstrapDepartmentDeleteForm
-from app.adminpanel.employee.forms import BootstrapDepartmentEditForm
+from app.adminpanel.department.forms import BootstrapDepartmentDeleteForm, BootstrapDepartmentCreateForm
+from app.adminpanel.department.forms import BootstrapDepartmentEditForm
 
 APP_NAME = 'Streletz Кoрпоративный Портал'
 VERSION = '0.2.0'

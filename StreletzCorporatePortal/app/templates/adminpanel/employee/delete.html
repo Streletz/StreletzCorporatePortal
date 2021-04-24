@@ -5,11 +5,11 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Удаление подразделения</h1>
+        <h1>{{ title }}</h1>
     </div>
 </div>
 <div class="col-md-12">
-    <form method="post" action="{% url 'delete_department' id=department.id %}">
+    <form method="post" action="{% url 'delete_employee' id=employee.id %}">
         {% csrf_token %}
         {{ form }}
         <br />

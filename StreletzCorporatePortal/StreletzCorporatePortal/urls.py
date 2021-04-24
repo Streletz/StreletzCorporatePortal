@@ -45,7 +45,12 @@ urlpatterns = [path('', views.home, name='home'),
                     name='edit_position'),
                path('adminpanel/position/delete/<int:id>', admin_position_views.positionDelete,
                     name='delete_position'),
-path('adminpanel/employee', admin_employee_views.EmployeeListView.as_view(), name='employees'),
+               path('adminpanel/employee', admin_employee_views.EmployeeListView.as_view(), name='employees'),
+               path('adminpanel/employee/create', admin_employee_views.employeeCreate, name='create_employee'),
+               path('adminpanel/employee/edit/<int:id>', admin_employee_views.employeeEdit,
+                    name='edit_employee'),
+               path('adminpanel/employee/delete/<int:id>', admin_employee_views.employeeDelete,
+                    name='delete_employee'),
                # PUBLIC SITE
                path('department/<int:id>', department_views.departmentView, name='department_content_view'),
                path('employee/<int:id>', employee_views.employeeCardView, name='employee_content_view')

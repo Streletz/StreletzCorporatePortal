@@ -3,17 +3,17 @@
 {% block content %}
 
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>Сотрудники</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Сотрудники</h1>
+        </div>
     </div>
-</div>
-<div class="row">
-    <a class="btn btn-primary" href="{% url 'create_department' %}">Создать</a>
-</div>
-<div class="row">
-    <table class="table table-hover">
-        <thead>
+    <div class="row">
+        <a class="btn btn-success" href="{% url 'create_employee' %}"><span class="glyphicon glyphicon-plus"></span>Создать</a>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Сотрудник</th>
@@ -21,23 +21,25 @@
                 <th scope="col">Должность</th>
                 <th scope="col">Статус</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for e in employees %}
-        <tr class='{{ e.isActive|yesno:"success, danger" }}'>
-            <td>{{ e.id }}</td>
-            <td>{{ e.name }}</td>
-            <td>{{ e.department.name }}</td>
-            <td>{{ e.position.name }}</td>
-            <td>{{ e.isActive|yesno:"Работает, Уволен" }}</td>
-            <td>
-                <a class="btn btn-primary" href="{% url 'edit_department' id=e.id %}">Редактировать</a>
-                <a class="btn btn-danger" href="{% url 'delete_department' id=e.id %}">Удалить</a>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+            {% for e in employees %}
+                <tr class='{{ e.isActive|yesno:"success, danger" }}'>
+                    <td>{{ e.id }}</td>
+                    <td>{{ e.name }}</td>
+                    <td>{{ e.department.name }}</td>
+                    <td>{{ e.position.name }}</td>
+                    <td>{{ e.isActive|yesno:"Работает, Уволен" }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'edit_employee' id=e.id %}"><span
+                                class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn btn-danger" href="{% url 'delete_employee' id=e.id %}"><span
+                                class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}

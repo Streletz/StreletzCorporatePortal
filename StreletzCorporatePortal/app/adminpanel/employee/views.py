@@ -1,11 +1,11 @@
 from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
-from app.models import Department, Employee
+from app.models import Department, Employee, Position
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
-from app.adminpanel.employee.forms import BootstrapDepartmentCreateForm, BootstrapDepartmentDeleteForm
-from app.adminpanel.employee.forms import BootstrapDepartmentEditForm
+from app.adminpanel.employee.forms import BootstrapEmployeeCreateForm, \
+    BootstrapEmployeeEditForm, BootstrapEmployeeDeleteForm
 
 APP_NAME = 'Streletz Кoрпоративный Портал'
 VERSION = '0.2.0'
@@ -27,20 +27,20 @@ class EmployeeListView(ListView):
         return ctx
 
 
-def departmentCreate(request):
+def employeeCreate(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
-        form = BootstrapDepartmentCreateForm(request.POST)
+        form = BootstrapEmployeeCreateForm(request.POST)
         if form.is_valid:
             form.save()
-            return HttpResponseRedirect('/adminpanel/department')
+            return HttpResponseRedirect('/adminpanel/employee')
     else:
-        form = BootstrapDepartmentCreateForm()
+        form = BootstrapEmployeeCreateForm()
 
     return render(request,
-                  'adminpanel/departments/create.html',
+                  'adminpanel/employee/create.html',
                   {
-                      'title': 'Новое подразделение',
+                      'title': 'Новый сотрудник',
                       'year': datetime.now().year,
                       'app_name': APP_NAME,
                       'version': VERSION,
@@ -48,25 +48,30 @@ def departmentCreate(request):
                   })
 
 
-def departmentEdit(request, id):
+def employeeEdit(request, id):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
-        form = BootstrapDepartmentEditForm(request.POST)
+        form = BootstrapEmployeeEditForm(request.POST)
         if form.is_valid:
-            department = Department.objects.get(pk=id)
-            department.name = form.data.get('name')
-            department.description = form.data.get('description')
-            department.save()
-            return HttpResponseRedirect('/adminpanel/department')
+            employee = Employee.objects.get(pk=id)
+            employee.name = form.data.get('name')
+            employee.birthday = form.data.get('birthday')
+            employee.worksSince = form.data.get('worksSince')
+            employee.isActive = form.data.get('isActive') is not None
+            employee.dismissed = form.data.get('dismissed')
+            employee.department = Department.objects.get(pk=form.data.get('department'))
+            employee.position = Position.objects.get(pk=form.data.get('position'))
+            employee.save()
+            return HttpResponseRedirect('/adminpanel/employee')
     else:
-        department = Department.objects.get(pk=id)
-        form = BootstrapDepartmentEditForm(instance=department)
+        employee = Employee.objects.get(pk=id)
+        form = BootstrapEmployeeEditForm(instance=employee)
 
     return render(request,
-                  'adminpanel/departments/edit.html',
+                  'adminpanel/employee/edit.html',
                   {
-                      'department': department,
-                      'title': 'Редактирование подразделения',
+                      'employee': employee,
+                      'title': 'Редактирование сотрудника',
                       'year': datetime.now().year,
                       'app_name': APP_NAME,
                       'version': VERSION,
@@ -74,26 +79,25 @@ def departmentEdit(request, id):
                   })
 
 
-def departmentDelete(request, id):
+def employeeDelete(request, id):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
-        form = BootstrapDepartmentDeleteForm(request.POST)
+        form = BootstrapEmployeeDeleteForm(request.POST)
         if form.is_valid:
-            department = Department.objects.get(pk=id)
-            department.delete()
-            return HttpResponseRedirect('/adminpanel/department')
+            employee = Employee.objects.get(pk=id)
+            employee.delete()
+            return HttpResponseRedirect('/adminpanel/employee')
     else:
-        department = Department.objects.get(pk=id)
-        form = BootstrapDepartmentDeleteForm(instance=department)
+        employee = Employee.objects.get(pk=id)
+        form = BootstrapEmployeeDeleteForm(instance=employee)
 
     return render(request,
-                  'adminpanel/departments/delete.html',
+                  'adminpanel/employee/delete.html',
                   {
-                      'department': department,
-                      'title': 'Удаление подразделения',
+                      'employee': employee,
+                      'title': 'Удаление сотрудника',
                       'year': datetime.now().year,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form
                   })
-

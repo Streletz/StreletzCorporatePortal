@@ -7,7 +7,6 @@ from app.models import Department
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 
-VERSION = '0.2.0'
 
 
 def departmentView(request, id):

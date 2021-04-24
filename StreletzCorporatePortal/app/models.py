@@ -7,6 +7,7 @@ import datetime
 class Department(models.Model):    
     name = models.CharField(max_length=255,unique=True)
     description = models.TextField(null=True)
+    #director = models.ForeignKey(Employee, on_delete=models.PROTECT)
 
 class Position(models.Model):    
     name = models.CharField(max_length=255,unique=True)
@@ -27,7 +28,8 @@ class Director(models.Model):
     name = models.CharField(max_length=255)
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
     employee = models.ForeignKey(Employee, on_delete=models.PROTECT)
-
+    class Meta:
+        unique_together= (('department','employee'),)
 
 
 # Create your models here.

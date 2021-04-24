@@ -3,7 +3,7 @@ from datetime import datetime
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
-from app.models import Department, Employee
+from app.models import Department, Employee, Director
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from app.adminpanel.department.forms import BootstrapDepartmentDeleteForm, BootstrapDepartmentCreateForm
@@ -58,6 +58,17 @@ def departmentEdit(request, id):
             department = Department.objects.get(pk=id)
             department.name = form.data.get('name')
             department.description = form.data.get('description')
+            director_id = int(form.data.get('director'))
+            new_director = Employee.objects.get(pk=director_id)
+            if director_id > 0:
+                director = None
+                if department.director_set.count() > 0:
+                    director = department.director_set.filter(employee__isActive=True).first()
+                else:
+                    director = Director()
+                    director.department = department
+                director.employee = new_director
+                director.save()
             department.save()
             return HttpResponseRedirect('/adminpanel/department')
     else:
@@ -98,4 +109,3 @@ def departmentDelete(request, id):
                       'version': VERSION,
                       'form': form
                   })
-

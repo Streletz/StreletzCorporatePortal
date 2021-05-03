@@ -13,7 +13,7 @@ from app.adminpanel.department.forms import BootstrapDepartmentEditForm
 
 APP_NAME = settings.APP_NAME
 VERSION = settings.APP_VERSION
-
+YEAR = datetime.now().year
 
 class PostListView(ListView):
     title = 'Новости'
@@ -27,7 +27,7 @@ class PostListView(ListView):
         ctx['title'] = self.title
         ctx['app_name'] = APP_NAME
         ctx['version'] = VERSION
-        ctx['year'] = datetime.now().year
+        ctx['year'] = YEAR
         return ctx
 
 
@@ -50,7 +50,7 @@ def postCreate(request):
                   'adminpanel/post/create.html',
                   {
                       'title': 'Добавление новости',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form
@@ -76,7 +76,7 @@ def postEdit(request, id):
                   {
                       'post': post,
                       'title': 'Редактирование новости',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form
@@ -95,12 +95,13 @@ def postDelete(request, id):
         post = Post.objects.get(pk=id)
         form = BootstrapPostDeleteForm(instance=post)
 
+
     return render(request,
                   'adminpanel/post/delete.html',
                   {
                       'post': post,
                       'title': 'Удаление новости',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form

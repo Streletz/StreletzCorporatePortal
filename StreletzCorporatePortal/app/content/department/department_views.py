@@ -7,7 +7,7 @@ from app.models import Department
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 
-
+YEAR = datetime.now().year
 
 def departmentView(request, id):
     assert isinstance(request, HttpRequest)
@@ -21,6 +21,7 @@ def departmentView(request, id):
                   {
                       'department': department,
                       'title': department.name,
+                      'year':YEAR,
                       'app_name': settings.APP_NAME,
                       'version': settings.APP_VERSION,
                       'director': director,

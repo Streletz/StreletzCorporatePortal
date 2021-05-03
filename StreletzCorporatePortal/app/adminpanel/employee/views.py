@@ -9,6 +9,7 @@ from django.views.generic.list import ListView
 from app.adminpanel.employee.forms import BootstrapEmployeeCreateForm, \
     BootstrapEmployeeEditForm, BootstrapEmployeeDeleteForm
 
+YEAR = datetime.now().year
 
 class EmployeeListView(ListView):
     title = 'Сотрудники'
@@ -22,7 +23,7 @@ class EmployeeListView(ListView):
         ctx['title'] = self.title
         ctx['app_name'] = settings.APP_NAME
         ctx['version'] = settings.APP_VERSION
-        ctx['year'] = datetime.now().year
+        ctx['year'] = YEAR
         return ctx
 
 
@@ -40,7 +41,7 @@ def employeeCreate(request):
                   'adminpanel/employee/create.html',
                   {
                       'title': 'Новый сотрудник',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': settings.APP_NAME,
                       'version': settings.APP_VERSION,
                       'form': form
@@ -71,7 +72,7 @@ def employeeEdit(request, id):
                   {
                       'employee': employee,
                       'title': 'Редактирование сотрудника',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': settings.APP_NAME,
                       'version': settings.APP_VERSION,
                       'form': form
@@ -95,7 +96,7 @@ def employeeDelete(request, id):
                   {
                       'employee': employee,
                       'title': 'Удаление сотрудника',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': settings.APP_NAME,
                       'version': settings.APP_VERSION,
                       'form': form

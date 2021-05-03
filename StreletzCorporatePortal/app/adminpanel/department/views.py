@@ -11,6 +11,7 @@ from app.adminpanel.department.forms import BootstrapDepartmentEditForm
 
 APP_NAME = settings.APP_NAME
 VERSION = settings.APP_VERSION
+YEAR = datetime.now().year
 
 
 class DepartmentListView(ListView):
@@ -25,7 +26,7 @@ class DepartmentListView(ListView):
         ctx['title'] = self.title
         ctx['app_name'] = APP_NAME
         ctx['version'] = VERSION
-        ctx['year'] = datetime.now().year
+        ctx['year'] = YEAR
         return ctx
 
 
@@ -43,7 +44,7 @@ def departmentCreate(request):
                   'adminpanel/departments/create.html',
                   {
                       'title': 'Новое подразделение',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form
@@ -80,7 +81,7 @@ def departmentEdit(request, id):
                   {
                       'department': department,
                       'title': 'Редактирование подразделения',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form
@@ -104,7 +105,7 @@ def departmentDelete(request, id):
                   {
                       'department': department,
                       'title': 'Удаление подразделения',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form

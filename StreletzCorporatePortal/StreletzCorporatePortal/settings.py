@@ -112,4 +112,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 
 APP_NAME = 'Streletz Корпоративный Портал'
-APP_VERSION = "0.2.0"
+APP_VERSION = "0.3.0"

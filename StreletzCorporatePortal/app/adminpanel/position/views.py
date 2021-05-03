@@ -11,6 +11,7 @@ from app.models import Position
 
 APP_NAME = settings.APP_NAME
 VERSION = settings.APP_VERSION
+YEAR = datetime.now().year
 
 
 class PositionListView(ListView):
@@ -25,7 +26,7 @@ class PositionListView(ListView):
         ctx['title'] = self.title
         ctx['app_name'] = APP_NAME
         ctx['version'] = VERSION
-        ctx['year'] = datetime.now().year
+        ctx['year'] = YEAR
         return ctx
 
 
@@ -43,7 +44,7 @@ def positionCreate(request):
                   'adminpanel/position/create.html',
                   {
                       'title': 'Новая должность',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form
@@ -68,7 +69,7 @@ def positionEdit(request, id):
                   {
                       'position': position,
                       'title': 'Редактирование должности',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form
@@ -92,7 +93,7 @@ def positionDelete(request, id):
                   {
                       'position': position,
                       'title': 'Удаление должности',
-                      'year': datetime.now().year,
+                      'year': YEAR,
                       'app_name': APP_NAME,
                       'version': VERSION,
                       'form': form

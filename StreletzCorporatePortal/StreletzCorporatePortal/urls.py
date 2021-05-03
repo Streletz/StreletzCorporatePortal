@@ -54,6 +54,7 @@ urlpatterns = [path('', views.home, name='home'),
                     name='delete_employee'),
                path('adminpanel/post', admin_post_views.PostListView.as_view(), name='post'),
                path('adminpanel/post/create', admin_post_views.postCreate, name='create_post'),
+               path('adminpanel/post/edit/<int:id>', admin_post_views.postEdit, name='edit_post'),
                # PUBLIC SITE
                path('department/<int:id>', department_views.departmentView, name='department_content_view'),
                path('employee/<int:id>', employee_views.employeeCardView, name='employee_content_view')

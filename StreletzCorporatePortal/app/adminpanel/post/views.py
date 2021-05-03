@@ -4,7 +4,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
 
-from app.adminpanel.post.forms import BootstrapPostCreateForm
+from app.adminpanel.post.forms import BootstrapPostCreateForm, BootstrapPostEditForm
 from app.models import Department, Employee, Director, Post
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
@@ -57,36 +57,25 @@ def postCreate(request):
                   })
 
 
-def departmentEdit(request, id):
+def postEdit(request, id):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
-        form = BootstrapDepartmentEditForm(request.POST)
+        form = BootstrapPostEditForm(request.POST)
         if form.is_valid:
-            department = Department.objects.get(pk=id)
-            department.name = form.data.get('name')
-            department.description = form.data.get('description')
-            director_id = int(form.data.get('director'))
-            new_director = Employee.objects.get(pk=director_id)
-            if director_id > 0:
-                director = None
-                if department.director_set.count() > 0:
-                    director = department.director_set.filter(employee__isActive=True).first()
-                else:
-                    director = Director()
-                    director.department = department
-                director.employee = new_director
-                director.save()
-            department.save()
-            return HttpResponseRedirect('/adminpanel/department')
+            post = Post.objects.get(pk=id)
+            post.theme = form.data.get('theme')
+            post.content = form.data.get('content')
+            post.save()
+            return HttpResponseRedirect('/adminpanel/post')
     else:
-        department = Department.objects.get(pk=id)
-        form = BootstrapDepartmentEditForm(instance=department)
+        post = Post.objects.get(pk=id)
+        form = BootstrapPostEditForm(instance=post)
 
     return render(request,
-                  'adminpanel/departments/edit.html',
+                  'adminpanel/post/edit.html',
                   {
-                      'department': department,
-                      'title': 'Редактирование подразделения',
+                      'post': post,
+                      'title': 'Редактирование новости',
                       'year': datetime.now().year,
                       'app_name': APP_NAME,
                       'version': VERSION,

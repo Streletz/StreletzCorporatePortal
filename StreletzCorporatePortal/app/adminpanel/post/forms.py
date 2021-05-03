@@ -1,7 +1,9 @@
+import datetime
+
 from django import forms
 from django.forms import ModelChoiceField
 
-from app.models import Department, Employee
+from app.models import Department, Employee, Post
 
 
 class DepartmentModelChoiceField(ModelChoiceField):
@@ -9,21 +11,22 @@ class DepartmentModelChoiceField(ModelChoiceField):
         return obj.name
 
 
-class BootstrapDepartmentCreateForm(forms.ModelForm):
-    """Department create form which uses boostrap CSS."""
-    name = forms.CharField(max_length=255, label='Название',
-                           widget=forms.TextInput({
-                               'class': 'form-control'
-                           }))
-    description = forms.CharField(max_length=255, label='Описание',
-                                  widget=forms.Textarea({
-                                      'class': 'form-control'
-                                  }))
+class BootstrapPostCreateForm(forms.ModelForm):
+    """Post create form which uses boostrap CSS."""
+    theme = forms.CharField(max_length=255, label='Тема',
+                            widget=forms.TextInput({
+                                'class': 'form-control'
+                            }))
+    # created = forms.DateField(initial=datetime.datetime.now(), widget=forms.HiddenInput)
+    # author = forms.IntegerField(initial=0, widget=forms.HiddenInput)
+    content = forms.CharField(label='Текст новости',
+                              widget=forms.Textarea({
+                                  'class': 'form-control'
+                              }))
 
     class Meta:
-        model = Department
-        fields = ['name', 'description']
-
+        model = Post
+        fields = ['theme', 'content']
 
 class BootstrapDepartmentEditForm(forms.ModelForm):
     """Department edit form which uses boostrap CSS."""

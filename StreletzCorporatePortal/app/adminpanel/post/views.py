@@ -3,10 +3,12 @@ from datetime import datetime
 from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
+
+from app.adminpanel.post.forms import BootstrapPostCreateForm
 from app.models import Department, Employee, Director, Post
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
-from app.adminpanel.department.forms import BootstrapDepartmentDeleteForm, BootstrapDepartmentCreateForm
+from app.adminpanel.department.forms import BootstrapDepartmentDeleteForm
 from app.adminpanel.department.forms import BootstrapDepartmentEditForm
 
 APP_NAME = settings.APP_NAME
@@ -29,20 +31,25 @@ class PostListView(ListView):
         return ctx
 
 
-def departmentCreate(request):
+def postCreate(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
-        form = BootstrapDepartmentCreateForm(request.POST)
+        form = BootstrapPostCreateForm(request.POST)
         if form.is_valid:
-            form.save()
-            return HttpResponseRedirect('/adminpanel/department')
+            post = Post()
+            post.theme = form.data.get('theme')
+            post.content = form.data.get('content')
+            post.created = datetime.now()
+            post.author = request.user
+            post.save()
+            return HttpResponseRedirect('/adminpanel/post')
     else:
-        form = BootstrapDepartmentCreateForm()
+        form = BootstrapPostCreateForm()
 
     return render(request,
-                  'adminpanel/departments/create.html',
+                  'adminpanel/post/create.html',
                   {
-                      'title': 'Новое подразделение',
+                      'title': 'Добавление новости',
                       'year': datetime.now().year,
                       'app_name': APP_NAME,
                       'version': VERSION,

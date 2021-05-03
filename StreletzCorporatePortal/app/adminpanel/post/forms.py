@@ -6,6 +6,11 @@ from django.forms import ModelChoiceField
 from app.models import Department, Employee, Post
 
 
+class PostDateInput(forms.DateInput):
+    input_type = 'date'
+    format = '%Y-%m-%d'
+
+
 class DepartmentModelChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return obj.name
@@ -52,11 +57,16 @@ class BootstrapPostDeleteForm(forms.ModelForm):
     """Post create form which uses boostrap CSS."""
     id = forms.HiddenInput()
     theme = forms.CharField(max_length=255, label='Тема',
-                           widget=forms.TextInput({
-                               'class': 'form-control',
-                               'readonly': True
-                           }))
+                            widget=forms.TextInput({
+                                'class': 'form-control',
+                                'readonly': True
+                            }))
+    created = forms.DateField(label='Дата создания', required=True,
+                              widget=PostDateInput({
+                                  'class': 'form-control',
+                                  'readonly': True
+                              }))
 
     class Meta:
         model = Department
-        fields = ['id', 'theme']
+        fields = ['id', 'theme', 'created']

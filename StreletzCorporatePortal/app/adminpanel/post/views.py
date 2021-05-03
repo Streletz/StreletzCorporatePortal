@@ -4,7 +4,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest
 
-from app.adminpanel.post.forms import BootstrapPostCreateForm, BootstrapPostEditForm
+from app.adminpanel.post.forms import BootstrapPostCreateForm, BootstrapPostEditForm, BootstrapPostDeleteForm
 from app.models import Department, Employee, Director, Post
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
@@ -83,23 +83,23 @@ def postEdit(request, id):
                   })
 
 
-def departmentDelete(request, id):
+def postDelete(request, id):
     assert isinstance(request, HttpRequest)
     if request.method == 'POST':
-        form = BootstrapDepartmentDeleteForm(request.POST)
+        form = BootstrapPostDeleteForm(request.POST)
         if form.is_valid:
-            department = Department.objects.get(pk=id)
-            department.delete()
-            return HttpResponseRedirect('/adminpanel/department')
+            post = Post.objects.get(pk=id)
+            post.delete()
+            return HttpResponseRedirect('/adminpanel/post')
     else:
-        department = Department.objects.get(pk=id)
-        form = BootstrapDepartmentDeleteForm(instance=department)
+        post = Post.objects.get(pk=id)
+        form = BootstrapPostDeleteForm(instance=post)
 
     return render(request,
-                  'adminpanel/departments/delete.html',
+                  'adminpanel/post/delete.html',
                   {
-                      'department': department,
-                      'title': 'Удаление подразделения',
+                      'post': post,
+                      'title': 'Удаление новости',
                       'year': datetime.now().year,
                       'app_name': APP_NAME,
                       'version': VERSION,

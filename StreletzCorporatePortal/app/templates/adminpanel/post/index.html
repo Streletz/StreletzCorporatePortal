@@ -30,7 +30,7 @@
             <td>{{ p.theme }}</td>
             <td>
                 <a class="btn btn-primary" href="{% url 'edit_post' id=p.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a class="btn btn-danger" href="{% url 'delete_department' id=p.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+                <a class="btn btn-danger" href="{% url 'delete_post' id=p.id %}"><span class="glyphicon glyphicon-trash"></span></a>
             </td>
         </tr>
         {% endfor %}

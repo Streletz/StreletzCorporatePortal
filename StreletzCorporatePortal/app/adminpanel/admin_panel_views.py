@@ -6,7 +6,7 @@ from django.http import HttpRequest
 
 APP_NAME = settings.APP_NAME
 VERSION = settings.APP_VERSION
-YEAR = datetime.now().year
+YEAR = settings.APP_YEAR
 
 
 def adminpanelMain(request):

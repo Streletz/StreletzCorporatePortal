@@ -1,19 +1,17 @@
 from datetime import datetime
 
 from django.conf import settings
-from django.shortcuts import render
 from django.http import HttpRequest
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.views.generic.list import ListView
 
 from app.adminpanel.post.forms import BootstrapPostCreateForm, BootstrapPostEditForm, BootstrapPostDeleteForm
-from app.models import Department, Employee, Director, Post
-from django.http import HttpResponseRedirect
-from django.views.generic.list import ListView
-from app.adminpanel.department.forms import BootstrapDepartmentDeleteForm
-from app.adminpanel.department.forms import BootstrapDepartmentEditForm
+from app.models import Post
 
 APP_NAME = settings.APP_NAME
 VERSION = settings.APP_VERSION
-YEAR = datetime.now().year
+YEAR = settings.APP_YEAR
 
 class PostListView(ListView):
     title = 'Новости'
@@ -21,6 +19,7 @@ class PostListView(ListView):
     template_name = 'adminpanel/post/index.html'
     context_object_name = 'posts'
     ordering = ['created']
+    paginate_by = settings.APP_ADMINPANEL_PAGINATE_BY
 
     def get_context_data(self, **kwargs):
         ctx = super(PostListView, self).get_context_data(**kwargs)

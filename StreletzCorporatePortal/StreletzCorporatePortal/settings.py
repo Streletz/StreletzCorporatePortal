@@ -110,6 +110,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
-
+# Параметры специфичные для данного приложения
 APP_NAME = 'Streletz Корпоративный Портал'
 APP_VERSION = "0.3.0"
+APP_YEAR = 2021
+APP_ADMINPANEL_PAGINATE_BY = 20
+APP_CONTENT_PAGINATE_BY = 20

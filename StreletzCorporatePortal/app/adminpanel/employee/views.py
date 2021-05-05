@@ -9,7 +9,7 @@ from django.views.generic.list import ListView
 from app.adminpanel.employee.forms import BootstrapEmployeeCreateForm, \
     BootstrapEmployeeEditForm, BootstrapEmployeeDeleteForm
 
-YEAR = datetime.now().year
+YEAR = settings.APP_YEAR
 
 class EmployeeListView(ListView):
     title = 'Сотрудники'
@@ -17,6 +17,7 @@ class EmployeeListView(ListView):
     template_name = 'adminpanel/employee/index.html'
     context_object_name = 'employees'
     ordering = ['name']
+    paginate_by = settings.APP_ADMINPANEL_PAGINATE_BY
 
     def get_context_data(self, **kwargs):
         ctx = super(EmployeeListView, self).get_context_data(**kwargs)

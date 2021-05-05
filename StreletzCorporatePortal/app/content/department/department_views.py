@@ -1,13 +1,10 @@
-from datetime import datetime
-
 from django.conf import settings
-from django.shortcuts import render
 from django.http import HttpRequest
-from app.models import Department
-from django.http import HttpResponseRedirect
-from django.views.generic.list import ListView
+from django.shortcuts import render
 
-YEAR = datetime.now().year
+from app.models import Department
+
+YEAR = settings.APP_YEAR
 
 def departmentView(request, id):
     assert isinstance(request, HttpRequest)

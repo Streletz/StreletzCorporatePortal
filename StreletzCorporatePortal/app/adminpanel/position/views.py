@@ -11,7 +11,7 @@ from app.models import Position
 
 APP_NAME = settings.APP_NAME
 VERSION = settings.APP_VERSION
-YEAR = datetime.now().year
+YEAR = settings.APP_YEAR
 
 
 class PositionListView(ListView):
@@ -20,6 +20,7 @@ class PositionListView(ListView):
     template_name = 'adminpanel/position/index.html'
     context_object_name = 'positions'
     ordering = ['name']
+    paginate_by = settings.APP_ADMINPANEL_PAGINATE_BY
 
     def get_context_data(self, **kwargs):
         ctx = super(PositionListView, self).get_context_data(**kwargs)

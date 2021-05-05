@@ -11,7 +11,7 @@ from app.adminpanel.department.forms import BootstrapDepartmentEditForm
 
 APP_NAME = settings.APP_NAME
 VERSION = settings.APP_VERSION
-YEAR = datetime.now().year
+YEAR = settings.APP_YEAR
 
 
 class DepartmentListView(ListView):
@@ -20,6 +20,7 @@ class DepartmentListView(ListView):
     template_name = 'adminpanel/departments/index.html'
     context_object_name = 'departments'
     ordering = ['name']
+    paginate_by = settings.APP_ADMINPANEL_PAGINATE_BY
 
     def get_context_data(self, **kwargs):
         ctx = super(DepartmentListView, self).get_context_data(**kwargs)

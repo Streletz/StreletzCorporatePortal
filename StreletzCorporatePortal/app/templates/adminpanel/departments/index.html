@@ -3,35 +3,53 @@
 {% block content %}
 
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>Подразделения</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Подразделения</h1>
+        </div>
     </div>
-</div>
-<div class="row">
-    <a class="btn btn-success" href="{% url 'create_department' %}"><span class="glyphicon glyphicon-plus"></span>Создать</a>
-</div>
-<div class="row">
-    <table class="table table-hover">
-        <thead>
+    <div class="row">
+        <a class="btn btn-success" href="{% url 'create_department' %}"><span class="glyphicon glyphicon-plus"></span>Создать</a>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Подразделение</th>      
+                <th scope="col">Подразделение</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for d in departments %}
-        <tr class='success'>
-            <td>{{ d.id }}</td>
-            <td>{{ d.name }}</td>
-            <td>
-                <a class="btn btn-primary" href="{% url 'edit_department' id=d.id %}"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a class="btn btn-danger" href="{% url 'delete_department' id=d.id %}"><span class="glyphicon glyphicon-trash"></span></a>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+            {% for d in departments %}
+                <tr class='success'>
+                    <td>{{ d.id }}</td>
+                    <td>{{ d.name }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'edit_department' id=d.id %}"><span
+                                class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="btn btn-danger" href="{% url 'delete_department' id=d.id %}"><span
+                                class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; В начало</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
 
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
 {% endblock %}

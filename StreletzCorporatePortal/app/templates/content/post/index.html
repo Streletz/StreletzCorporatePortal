@@ -1,0 +1,41 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+
+    {% for p in posts %}
+        <div class ="row"><h2>{{ p.theme }}</h2></div>
+        <div class ="row">
+        <div class="col-md-3">{{ p.created|date:"d m Y H:i" }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ p.content|slice:"0:300" }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; В начало</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+{% endblock %}

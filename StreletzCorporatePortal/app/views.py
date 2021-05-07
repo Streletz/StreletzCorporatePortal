@@ -51,9 +51,11 @@ def about(request):
         request,
         'app/about.html',
         {
-            'title': 'About',
+            'title': 'О Программе',
             'message': 'Your application description page.',
             'year': YEAR,
+            'author': settings.APP_AUTHOR_NAME,
+            'author_site': settings.APP_AUTHOR_SITE,
             'app_name': APP_NAME,
             'version': VERSION
         }

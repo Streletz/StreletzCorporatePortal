@@ -114,5 +114,7 @@ STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 APP_NAME = 'Streletz Корпоративный Портал'
 APP_VERSION = "0.3.0"
 APP_YEAR = 2021
+APP_AUTHOR_NAME="Стрелец Coder"
+APP_AUTHOR_SITE='https://streletzcoder.ru'
 APP_ADMINPANEL_PAGINATE_BY = 20
 APP_CONTENT_PAGINATE_BY = 20

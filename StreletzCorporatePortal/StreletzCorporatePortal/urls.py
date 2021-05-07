@@ -15,7 +15,7 @@ from app.adminpanel.post import views as admin_post_views
 
 from app.content.department import department_views
 from app.content.employee import employee_views
-from app.content.post import  post_views
+from app.content.post import post_views
 
 urlpatterns = [path('', views.home, name='home'),
                path('contact/', views.contact, name='contact'),
@@ -61,5 +61,6 @@ urlpatterns = [path('', views.home, name='home'),
                # PUBLIC SITE
                path('department/<int:id>', department_views.departmentView, name='department_content_view'),
                path('employee/<int:id>', employee_views.employeeCardView, name='employee_content_view'),
-               path('post/', post_views.PostListView.as_view(), name='post_content')
+               path('post/', post_views.PostListView.as_view(), name='post_content'),
+               path('post/<int:id>', post_views.postView, name='post_content_view')
                ]

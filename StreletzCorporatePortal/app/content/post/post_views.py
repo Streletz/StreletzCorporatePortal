@@ -26,3 +26,17 @@ class PostListView(ListView):
         ctx['version'] = VERSION
         ctx['year'] = YEAR
         return ctx
+
+
+def postView(request, id):
+    assert isinstance(request, HttpRequest)
+    post = Post.objects.get(pk=id)
+    return render(request,
+                  'content/post/view.html',
+                  {
+                      'post': post,
+                      'year': YEAR,
+                      'app_name': APP_NAME,
+                      'version': VERSION,
+                      'title': post.theme
+                  })

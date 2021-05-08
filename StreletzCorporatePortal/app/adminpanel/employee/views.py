@@ -11,6 +11,7 @@ from app.adminpanel.employee.forms import BootstrapEmployeeCreateForm, \
 
 YEAR = settings.APP_YEAR
 
+
 class EmployeeListView(ListView):
     title = 'Сотрудники'
     model = Employee
@@ -60,8 +61,13 @@ def employeeEdit(request, id):
             employee.worksSince = form.data.get('worksSince')
             isActive = form.data.get('isActive') is not None
             employee.isActive = isActive
-            if not isActive:
-                employee.dismissed = form.data.get('dismissed')
+            if isActive:
+                employee.dismissed = None
+            else:
+                if form.data.get('dismissed') is not None and form.data.get('dismissed') != '':
+                    employee.dismissed = form.data.get('dismissed')
+                else:
+                    employee.dismissed = datetime.now()
             employee.department = Department.objects.get(pk=form.data.get('department'))
             employee.position = Position.objects.get(pk=form.data.get('position'))
             employee.save()

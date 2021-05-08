@@ -58,8 +58,10 @@ def employeeEdit(request, id):
             employee.name = form.data.get('name')
             employee.birthday = form.data.get('birthday')
             employee.worksSince = form.data.get('worksSince')
-            employee.isActive = form.data.get('isActive') is not None
-            employee.dismissed = form.data.get('dismissed')
+            isActive = form.data.get('isActive') is not None
+            employee.isActive = isActive
+            if not isActive:
+                employee.dismissed = form.data.get('dismissed')
             employee.department = Department.objects.get(pk=form.data.get('department'))
             employee.position = Position.objects.get(pk=form.data.get('position'))
             employee.save()

@@ -29,9 +29,9 @@ class BootstrapEmployeeCreateForm(forms.ModelForm):
                                      'class': 'form-control'
                                  }))
     department = EmployeeModelChoiceField(queryset=Department.objects.all(), required=True,
-                                          label='Подразделение')
+                                          label='Подразделение', widget=forms.Select(attrs={'class': 'form-control'}))
     position = EmployeeModelChoiceField(queryset=Position.objects.all(), required=True,
-                                        label='Должность')
+                                        label='Должность', widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Employee
@@ -54,15 +54,15 @@ class BootstrapEmployeeEditForm(forms.ModelForm):
                                      'class': 'form-control'
                                  }))
     isActive = forms.BooleanField(label="Работает", required=False,
-                                  widget=forms.CheckboxInput({'class': 'form-control'}))
-    dismissed = forms.DateField(label='Уволен',
+                                  widget=forms.CheckboxInput({'class': 'form-check-input'}))
+    dismissed = forms.DateField(label='Уволен', required=False,
                                 widget=EmployeeDateInput({
                                     'class': 'form-control'
                                 }))
     department = EmployeeModelChoiceField(queryset=Department.objects.all(), required=True,
-                                          label='Подразделение')
+                                          label='Подразделение', widget=forms.Select(attrs={'class': 'form-control'}))
     position = EmployeeModelChoiceField(queryset=Position.objects.all(), required=True,
-                                        label='Должность')
+                                        label='Должность', widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Employee

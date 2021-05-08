@@ -33,8 +33,8 @@ python manage.py migrate
    ```
 ## HISTORY
 
-### 0.1.0
+### 1.0.0
 
-First version.
+First stable version.
 
  - Department list.

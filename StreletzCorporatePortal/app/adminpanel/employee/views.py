@@ -59,15 +59,17 @@ def employeeEdit(request, id):
             employee.name = form.data.get('name')
             employee.birthday = form.data.get('birthday')
             employee.worksSince = form.data.get('worksSince')
-            isActive = form.data.get('isActive') is not None
-            employee.isActive = isActive
-            if isActive:
+            # Обработка увольнения сотрудника
+            is_active = form.data.get('isActive') is not None
+            employee.isActive = is_active
+            if is_active:
                 employee.dismissed = None
             else:
                 if form.data.get('dismissed') is not None and form.data.get('dismissed') != '':
                     employee.dismissed = form.data.get('dismissed')
                 else:
                     employee.dismissed = datetime.now()
+            # Выбираем подразделение и должность
             employee.department = Department.objects.get(pk=form.data.get('department'))
             employee.position = Position.objects.get(pk=form.data.get('position'))
             employee.save()

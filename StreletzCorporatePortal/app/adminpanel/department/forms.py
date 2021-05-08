@@ -39,7 +39,9 @@ class BootstrapDepartmentEditForm(forms.ModelForm):
     director = DepartmentModelChoiceField(
         queryset=None,
         required=False,
-        label='Руководитель')
+        label='Руководитель',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
 
     class Meta:
         model = Department

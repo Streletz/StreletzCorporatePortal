@@ -16,7 +16,7 @@ The corporate portal powered by Python Django.
 ```DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'corporate_portal',
+        'NAME': 'corporate_portal_db',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',

@@ -64,7 +64,8 @@ TEMPLATES = [{
                                'django.contrib.auth.context_processors.auth',
                                'django.contrib.messages.context_processors.messages'],
         'libraries': {
-            'department_menu': 'app.ui_modules.department_menu'
+            'department_menu': 'app.ui_modules.department_menu',
+            'last_posts': 'app.ui_modules.last_posts'
         }
     },
 }, ]
@@ -114,7 +115,8 @@ STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 APP_NAME = 'Streletz Корпоративный Портал'
 APP_VERSION = "0.4.0"
 APP_YEAR = 2021
-APP_AUTHOR_NAME="Стрелец Coder"
-APP_AUTHOR_SITE='https://streletzcoder.ru'
+APP_AUTHOR_NAME = "Стрелец Coder"
+APP_AUTHOR_SITE = 'https://streletzcoder.ru'
 APP_ADMINPANEL_PAGINATE_BY = 20
 APP_CONTENT_PAGINATE_BY = 20
+APP_LAST_POSTS_COUNT = 10

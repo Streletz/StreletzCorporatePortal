@@ -18,7 +18,6 @@ from app.content.employee import employee_views
 from app.content.post import post_views
 
 urlpatterns = [path('', views.home, name='home'),
-               path('contact/', views.contact, name='contact'),
                path('about/', views.about, name='about'),
                path('login/',
                     LoginView.as_view(template_name='app/login.html',

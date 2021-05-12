@@ -25,7 +25,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'post_content' %}">Новости</a></li>
                 <li><a href="{% url 'about' %}">О Программе</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'adminpanel' %}">Панель администратора</a></li>
                 {% endif %}

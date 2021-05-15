@@ -4,7 +4,10 @@ from django.shortcuts import render
 
 from app.models import Department
 
+APP_NAME = settings.APP_NAME
+APP_VERSION = settings.APP_VERSION
 YEAR = settings.APP_YEAR
+
 
 def departmentView(request, id):
     assert isinstance(request, HttpRequest)
@@ -18,9 +21,9 @@ def departmentView(request, id):
                   {
                       'department': department,
                       'title': department.name,
-                      'year':YEAR,
-                      'app_name': settings.APP_NAME,
-                      'version': settings.APP_VERSION,
+                      'year': YEAR,
+                      'app_name': APP_NAME,
+                      'version': APP_VERSION,
                       'director': director,
                       'employees': employees
                   })

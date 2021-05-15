@@ -36,5 +36,3 @@ python manage.py migrate
 ### 1.0.0
 
 First stable version.
-
- - Department list.

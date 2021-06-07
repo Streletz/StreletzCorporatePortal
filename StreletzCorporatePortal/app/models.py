@@ -3,12 +3,19 @@ Definition of models.
 """
 from django.conf import settings
 from django.db import models
-import datetime
 
 
 class Department(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    description = models.TextField(null=True)
+    name = models.CharField(max_length=255, unique=True, verbose_name=u"Название")
+    description = models.TextField(null=True, verbose_name=u"Описание")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = u"Подразделение"
+        verbose_name_plural = "Подразделения"
+
 
 class Position(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -42,6 +49,5 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     theme = models.CharField(max_length=255)
     content = models.TextField(null=True)
-
 
 # Create your models here.

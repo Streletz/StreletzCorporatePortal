@@ -15,7 +15,7 @@ class BootstrapDepartmentCreateForm(forms.ModelForm):
                            widget=forms.TextInput({
                                'class': 'form-control'
                            }))
-    description = forms.CharField(max_length=255, label='Описание',
+    description = forms.CharField(max_length=255, label='Описание', required= False,
                                   widget=forms.Textarea({
                                       'class': 'form-control'
                                   }))
@@ -33,6 +33,7 @@ class BootstrapDepartmentEditForm(forms.ModelForm):
                                'class': 'form-control'
                            }))
     description = forms.CharField(max_length=255, label='Описание',
+                                  required=False,
                                   widget=forms.Textarea({
                                       'class': 'form-control'
                                   }))

@@ -113,7 +113,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 # Параметры специфичные для данного приложения
 APP_NAME = 'Streletz Корпоративный Портал'
-APP_VERSION = "1.0.0 Бета"
+APP_VERSION = "1.0.0"
 APP_YEAR = 2021
 APP_AUTHOR_NAME = "Стрелец Coder"
 APP_AUTHOR_SITE = 'https://streletzcoder.ru'

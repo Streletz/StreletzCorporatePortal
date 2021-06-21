@@ -1,0 +1,22 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Удаление должности</h1>
+    </div>
+</div>
+<div class="col-md-12">
+    <form method="post" action="{% url 'delete_position' id=position.id %}">
+        {% csrf_token %}
+        {{ form }}
+        <br />
+        <a href="{% url 'positions' %}" class="btn btn-default" >Назад</a>
+        <input type="submit" class="btn btn-success" value="OK"/>
+    </form>
+</div>
+
+
+{% endblock %}

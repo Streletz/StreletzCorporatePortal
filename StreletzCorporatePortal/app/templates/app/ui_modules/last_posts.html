@@ -1,0 +1,13 @@
+<h2>
+    Последние новости
+</h2>
+<ul>
+    {% for p in posts %}
+        <div class="row"><h4><a href="{% url 'post_content_view' id=p.id %}">{{ p.theme }}</a></h4></div>
+        <div class="row">
+            <div class="col-md-12">
+                {{ p.content|slice:"0:300" }} <a href="{% url 'post_content_view' id=p.id %}">Подробнее...</a>
+            </div>
+        </div>
+    {% endfor %}
+</ul>

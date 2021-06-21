@@ -1,0 +1,65 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{ title }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if department.description is not None %}
+                {{ department.description }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Руководитель</h3>
+            {% if director != none %}
+                <p>
+                    <a href="{% url 'employee_content_view' id=director.id %}">{{ director.name }}</a>, {{ director.position.name }}
+                </p>
+            {% else %}
+                <p>Не назначен.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Сотрудники</h3>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Ф.И.О</th>
+                <th scope="col">Должность</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for e in employees %}
+                {% if director != none %}
+                    {% if e.id != director.id %}
+                        <tr>
+                            <td>{{ e.id }}</td>
+                            <td><a href="{% url 'employee_content_view' id=e.id %}">{{ e.name }}</a></td>
+                            <td>{{ e.position.name }}</td>
+                        </tr>
+                    {% endif %}
+                {% else %}
+                    <tr>
+                        <td>{{ e.id }}</td>
+                        <td><a href="{% url 'employee_content_view' id=e.id %}">{{ e.name }}</a></td>
+                        <td>{{ e.position.name }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

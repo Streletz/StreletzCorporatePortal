@@ -1,0 +1,8 @@
+<h2>
+    Подразделения
+</h2>
+<ul>
+    {% for d in departments %}
+        <li><a href="{% url 'department_content_view' id=d.id %}">{{ d.name }}</a></li>
+    {% endfor %}
+</ul>

@@ -2,9 +2,26 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
+    <h1>{{ title }}.</h1>
+    <h2>{{ app_name }}</h2>
+    <table class="table table-hover">
+        <tr>
+            <td>Версия</td>
+            <td>{{ version }}</td>
+        </tr>
+        <tr>
+            <td>Год</td>
+            <td>{{ year }}</td>
+        </tr>
+        <tr>
+            <td>Автор</td>
+            <td>{{ author }}</td>
+        </tr>
+        <tr>
+            <td>Сайт автора</td>
+            <td><a href="{{ author_site }}">{{ author_site }}</a></td>
+        </tr>
+    </table>
 
-<p>Use this area to provide additional information.</p>
 
 {% endblock %}

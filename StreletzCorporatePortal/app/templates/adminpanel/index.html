@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ title }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Модули</h2>
+            <ul>
+                <li><a href="{% url 'departments' %}">Подразделения</a></li>
+                <li><a href="{% url 'positions' %}">Должности</a></li>
+                <li><a href="{% url 'employees' %}">Сотрудники</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>Новости</h2>
+            <ul>
+                <li><a href="{% url 'post' %}">Список</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+*.suo
+*.pyc
+**/__pycache__
+/StreletzCorporatePortal/env/Lib/site-packages/psycopg2-2.8.6.dist-info

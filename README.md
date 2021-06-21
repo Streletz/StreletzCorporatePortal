@@ -2,8 +2,6 @@
 
 The corporate portal powered by Python Django.
 
-**The application is under development!!!**
-
 ## SYSTEM REQUIREMENTS
 
  - Python 3.8 or higher;
